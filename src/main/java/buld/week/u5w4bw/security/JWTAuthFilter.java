@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.security;
 
-import buld.week.u5w4bw.Services.UserService;
+import buld.week.u5w4bw.services.UserService;
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.UnauthorizedException;
 
