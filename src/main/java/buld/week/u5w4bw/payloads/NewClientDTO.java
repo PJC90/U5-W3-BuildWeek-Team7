@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.payloads;
 
-import buld.week.u5w4bw.Entities.Address;
+import buld.week.u5w4bw.entities.Address;
 import buld.week.u5w4bw.Entities.enums.BusinessType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
