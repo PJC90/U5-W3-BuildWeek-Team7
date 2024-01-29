@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.Enums;
+package buld.week.u5w4bw.entities;
 
 public enum Invoicestates {
     PAGATO,

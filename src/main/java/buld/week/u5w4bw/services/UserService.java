@@ -1,7 +1,7 @@
-package buld.week.u5w4bw.Services;
+package buld.week.u5w4bw.services;
 
-import buld.week.u5w4bw.Enteties.User;
-import buld.week.u5w4bw.Repository.UserDao;
+import buld.week.u5w4bw.entities.User;
+import buld.week.u5w4bw.repositories.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
