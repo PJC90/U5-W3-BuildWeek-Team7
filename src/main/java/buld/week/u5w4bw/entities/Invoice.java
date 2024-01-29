@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Invoice {
+
     @Id
     @GeneratedValue
     private UUID number;
