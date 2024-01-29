@@ -3,18 +3,16 @@ package buld.week.u5w4bw.entities;
 import buld.week.u5w4bw.Entities.enums.BusinessType;
 import buld.week.u5w4bw.entities.Address;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-
-
 public class Clients {
     private UUID clientid;
 
@@ -33,7 +31,10 @@ public class Clients {
     private String businessLogo;
     private Address address;
 
-    //    private Fattura fattura;
+    private List<Invoice> invoiceList;
+
+    private List<Address> addressList;
+
 
     public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo, Address address) {
         this.businessType = businessType;
