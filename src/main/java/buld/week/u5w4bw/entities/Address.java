@@ -23,12 +23,12 @@ public class Address {
     private String city;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "province_code", referencedColumnName = "province_code")
+    @JoinColumn(name = "province_code")
     private Province province;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "comune_code", referencedColumnName = "comune_code")
+    @JoinColumn(name = "comune_code")
     private Comune comune;
 
 

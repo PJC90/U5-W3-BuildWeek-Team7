@@ -38,12 +38,14 @@ public class ImportCSV {
                 String provinceCode = record.get("Sigla");
                 String name = record.get("Provincia");
                 String regione = record.get("Regione");
+                int code = Integer.parseInt(record.get("Code"));
 
                 // Crea e salva l'oggetto Province nel database
                 Province province = new Province();
                 province.setNomeProvincia(name);
                 province.setSigla(provinceCode);
                 province.setRegione(regione);
+                province.setProvinceCode(code);
 
                 System.out.println(province);
                 provinceService.saveProvince(province);
@@ -58,8 +60,8 @@ public class ImportCSV {
              CSVParser csvParser = CSVFormat.DEFAULT.withDelimiter(';').withFirstRecordAsHeader().parse(reader)) {
 
             for (CSVRecord record : csvParser) {
-                String provinciaCode = record.get("Codice Provincia (Storico)(1)");
-                String comuneCode = record.get("Progressivo del Comune (2)");
+                int provinciaCode = Integer.parseInt(record.get("Codice Provincia (Storico)(1)"));
+                int comuneCode = Integer.parseInt(record.get("Progressivo del Comune (2)"));
                 String nomeComune = record.get("Denominazione in italiano");
 
                 // Crea e salva l'oggetto Comune nel database

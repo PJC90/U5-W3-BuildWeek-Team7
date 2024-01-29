@@ -22,10 +22,10 @@ public class Comune {
     private Long id;
 
     @Column(name = "province_id")
-    private String provinceCode;
+    private int provinceCode;
 
     @Column(name = "comune_code")
-    private String comuneCode;
+    private int comuneCode;
 
     @Column(name = "name")
     private String name;
