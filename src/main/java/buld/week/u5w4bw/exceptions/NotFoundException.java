@@ -3,10 +3,12 @@ package buld.week.u5w4bw.exceptions;
 
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 public class NotFoundException extends RuntimeException {
 
-    public NotFoundException(long id) {
+    public NotFoundException(UUID id) {
         super("Item with id: " + id + " not found");
     }
 
