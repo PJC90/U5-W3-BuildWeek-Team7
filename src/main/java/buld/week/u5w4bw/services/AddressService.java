@@ -36,7 +36,6 @@ public class AddressService {
         Address address = new Address();
         address.setCity(payload.city());
         address.setStreet(payload.street());
-        address.setProvincia(payload.provincia());
         address.setHouseNumber(payload.houseNumber());
         address.setPostalCode(payload.zipCode());
         return addressDAO.save(address);

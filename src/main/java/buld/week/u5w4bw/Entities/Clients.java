@@ -2,6 +2,8 @@ package buld.week.u5w4bw.entities;
 
 import buld.week.u5w4bw.Entities.enums.BusinessType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +15,9 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Clients {
+
+    @Id
+    @GeneratedValue
     private UUID clientid;
 
     private BusinessType businessType;
@@ -28,6 +33,7 @@ public class Clients {
     private String contactSurname;
     private String contactNumber;
     private String businessLogo;
+    
     private Address address;
 
     private List<Invoice> invoiceList;
