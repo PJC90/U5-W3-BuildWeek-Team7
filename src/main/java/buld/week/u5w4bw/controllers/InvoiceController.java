@@ -2,7 +2,7 @@ package buld.week.u5w4bw.controllers;
 
 
 import buld.week.u5w4bw.entities.Invoice;
-import buld.week.u5w4bw.services.InvoiceService;
+import     buld.week.u5w4bw.Services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -16,8 +16,8 @@ import java.util.UUID;
 @RequestMapping("/invoice")
 public class InvoiceController {
 
-   @Autowired
-   InvoiceService invoiceService;
+    @Autowired
+    InvoiceService invoiceService;
 
    @GetMapping
    @PreAuthorize("hasAuthority('ADMIN')")
