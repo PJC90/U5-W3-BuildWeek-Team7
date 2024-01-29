@@ -1,7 +1,7 @@
 package buld.week.u5w4bw.controllers;
 
 
-import buld.week.u5w4bw.Services.AddressService;
+import buld.week.u5w4bw.services.AddressService;
 import buld.week.u5w4bw.entities.Address;
 import buld.week.u5w4bw.payloads.AddressDTO;
 
