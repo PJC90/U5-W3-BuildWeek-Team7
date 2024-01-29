@@ -1,4 +1,5 @@
-package buld.week.u5w4bw.Services;
+package buld.week.u5w4bw.services;
+
 import buld.week.u5w4bw.services.UserService;
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.entities.enums.Roles;

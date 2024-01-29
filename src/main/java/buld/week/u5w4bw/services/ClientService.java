@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.Services;
+package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.exceptions.NotFoundException;
