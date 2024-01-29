@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.services;
 
-import buld.week.u5w4bw.entities.Roles;
+
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.repositories.UserDao;
@@ -34,7 +34,7 @@ public class UserService {
         update.setEmail(body.getEmail());
         update.setPassword(body.getPassword());
         update.setAvatar(body.getAvatar());
-        update.setRole(Roles.USER);
+        update.setRole(body.getRole());
         return userDao.save(update);
     }
 

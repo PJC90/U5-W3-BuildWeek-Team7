@@ -1,9 +1,7 @@
 package buld.week.u5w4bw.entities;
 
 import buld.week.u5w4bw.entities.enums.Roles;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,6 +27,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String avatar;
+    @Enumerated(EnumType.STRING)
     private Roles role;
 
     @Override
