@@ -1,9 +1,6 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Invoice;
-import buld.week.u5w4bw.entities.Invoicestates;
-import buld.week.u5w4bw.entities.Roles;
-import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.repositories.InvoiceDao;
 import org.springframework.beans.factory.annotation.Autowired;

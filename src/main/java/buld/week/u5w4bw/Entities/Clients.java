@@ -1,6 +1,7 @@
 package buld.week.u5w4bw.Entities;
 
 import buld.week.u5w4bw.Entities.enums.BusinessType;
+import buld.week.u5w4bw.entities.Address;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
