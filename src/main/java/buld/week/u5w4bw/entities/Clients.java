@@ -34,13 +34,11 @@ public class Clients {
     private String contactNumber;
     private String businessLogo;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "addressId")
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Address> address;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "number")
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Invoice> invoices;
 

@@ -1,6 +1,7 @@
 package buld.week.u5w4bw.controllers;
 
 
+import buld.week.u5w4bw.payloads.AddressResponseDTO;
 import buld.week.u5w4bw.services.AddressService;
 import buld.week.u5w4bw.entities.Address;
 import buld.week.u5w4bw.payloads.AddressDTO;
@@ -39,8 +40,9 @@ public class AddressController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Address saveNewAddress(@RequestBody AddressDTO payload) {
-        return addressService.saveAddress(payload);
+    public AddressResponseDTO saveNewAddress(@RequestBody AddressDTO payload) {
+       Address address = addressService.saveAddress(payload);
+       return new AddressResponseDTO(address.getAddressId());
     }
 
     @DeleteMapping("/{id}")

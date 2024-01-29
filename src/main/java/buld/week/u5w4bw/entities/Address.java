@@ -16,17 +16,13 @@ import java.util.UUID;
 public class Address {
     @Id
     @GeneratedValue
-
     private UUID addressId;
-
-
-
-
     private String Street;
     private int houseNumber;
     private String provincia;
     private int postalCode;
     private String city;
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Clients client;
 }
