@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.entities.enums;
 
 public enum Invoicestates {
-    PAGATO,
-    NON_PAGATO
+    PAID,
+    UNPAID
 }

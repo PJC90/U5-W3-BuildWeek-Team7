@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface InvoiceDao extends JpaRepository<Invoice, UUID> {
+public interface InvoiceDAO extends JpaRepository<Invoice, UUID> {
 
 }
