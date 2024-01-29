@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.Payloads;
+package buld.week.u5w4bw.payloads;
 
-public record AddressDTO(String street, String location, String City) {
+public record AddressDTO() {
 }

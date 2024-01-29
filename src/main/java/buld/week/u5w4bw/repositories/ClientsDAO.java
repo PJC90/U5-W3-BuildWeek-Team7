@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.repository;
+package buld.week.u5w4bw.repositories;
 
 import buld.week.u5w4bw.Entities.Clients;
 import org.springframework.data.jpa.repository.JpaRepository;

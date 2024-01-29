@@ -1,7 +1,4 @@
-package buld.week.u5w4bw.Services;
+package buld.week.u5w4bw.services;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class AddressService {
 }
