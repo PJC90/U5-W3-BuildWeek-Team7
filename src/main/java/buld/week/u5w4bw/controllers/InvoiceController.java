@@ -17,8 +17,8 @@ import java.util.UUID;
 @RequestMapping("/invoice")
 public class InvoiceController {
 
-   @Autowired
-   InvoiceService invoiceService;
+    @Autowired
+    InvoiceService invoiceService;
 
    @GetMapping
    @PreAuthorize("hasAuthority('ADMIN')")
