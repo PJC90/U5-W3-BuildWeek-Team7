@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.Enteties;
 
-import buld.week.u5w4bw.Enum.Invoicestates;
+import buld.week.u5w4bw.Enums.Invoicestates;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.Enum;
+package buld.week.u5w4bw.Enums;
 
 public enum Roles {
     USER,

@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.Enteties;
 
-import buld.week.u5w4bw.Enum.Roles;
+import buld.week.u5w4bw.Enums.Roles;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
