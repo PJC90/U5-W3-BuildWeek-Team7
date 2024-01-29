@@ -14,9 +14,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class Address {
-    @GeneratedValue
     @Id
+    @GeneratedValue
+
     private UUID addressId;
+
+
+
+
     private String Street;
     private int houseNumber;
     private String provincia;
