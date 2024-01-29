@@ -71,7 +71,7 @@ public class ClientService {
     }
 
 
-    public void invoiceDelete(UUID clientId) {
+    public void clientDelete(UUID clientId) {
         Clients delete = this.findById(clientId);
         clientsDAO.delete(delete);
     }
