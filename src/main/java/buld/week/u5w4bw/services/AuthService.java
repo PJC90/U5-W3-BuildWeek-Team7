@@ -45,7 +45,7 @@ public class AuthService {
         newUser.setSurname(body.surname());
         newUser.setUsername(body.username());
         newUser.setEmail(body.email());
-        newUser.setPassword(body.password());
+        newUser.setPassword(bcrypt.encode(body.password()));
         newUser.setRole(Roles.USER);
         newUser.setAvatar("https://ui-avatars.com/api/?name=" + body.name() + "+" + body.surname());
         return userDao.save(newUser);
