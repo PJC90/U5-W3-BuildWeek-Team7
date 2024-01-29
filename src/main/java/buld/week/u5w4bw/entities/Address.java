@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Address {
     @GeneratedValue
     @Id
-    private UUID id;
+    private UUID addressId;
     private String Street;
     private int houseNumber;
     private String provincia;

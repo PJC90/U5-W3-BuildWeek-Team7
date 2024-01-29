@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.entities;
 
-import buld.week.u5w4bw.Entities.enums.BusinessType;
+import buld.week.u5w4bw.entities.enums.BusinessType;
 import jakarta.persistence.Enumerated;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -35,12 +35,12 @@ public class Clients {
     private String businessLogo;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "addressId")
     @JsonIgnore
     private List<Address> address;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "invoices_number")
+    @JoinColumn(name = "number")
     @JsonIgnore
     private List<Invoice> invoices;
 
