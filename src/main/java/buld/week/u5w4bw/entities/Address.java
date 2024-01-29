@@ -19,7 +19,7 @@ public class Address {
     private UUID id;
     private String Street;
     private int houseNumber;
-    private String location;
+    private String provincia;
     private int postalCode;
     private String city;
     @ManyToOne

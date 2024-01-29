@@ -1,7 +1,8 @@
-package buld.week.u5w4bw.Entities;
+package buld.week.u5w4bw.entities;
 
 import buld.week.u5w4bw.Entities.enums.BusinessType;
 import buld.week.u5w4bw.entities.Address;
+
 import buld.week.u5w4bw.entities.Invoice;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -15,8 +16,6 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-
-
 public class Clients {
     private UUID clientId;
     @Enumerated(EnumType.STRING)
@@ -34,7 +33,6 @@ public class Clients {
     private String contactNumber;
     private String businessLogo;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     @JsonIgnore
@@ -44,6 +42,28 @@ public class Clients {
     @JoinColumn(name = "invoices_number")
     @JsonIgnore
     private List<Invoice> invoices;
+
+
+    public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo, Address address) {
+        this.businessType = businessType;
+        P_IVA = p_IVA;
+        this.email = email;
+        this.registerDate = registerDate;
+        this.lastcontactDate = lastcontactDate;
+        this.revenue = revenue;
+        this.PEC = PEC;
+        this.companyNumber = companyNumber;
+        this.contactMail = contactMail;
+        this.contactName = contactName;
+        this.contactSurname = contactSurname;
+        this.contactNumber = contactNumber;
+        this.businessLogo = businessLogo;
+
+    }
+
+
+
+
 
 
 }
