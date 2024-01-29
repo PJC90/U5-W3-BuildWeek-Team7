@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.services;
 
-import buld.week.u5w4bw.Entities.Clients;
+import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.payloads.ClientUpdateDTO;
 import buld.week.u5w4bw.payloads.NewClientDTO;
@@ -10,11 +10,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class ClientService {
 
     @Autowired
@@ -30,26 +32,26 @@ public class ClientService {
     }
 
 
-    public Clients clientSave(UUID clientId, Clients body) {
-        Clients update = this.findById(clientId);
-        update.setBusinessType(body.getBusinessType());
-        update.setP_IVA(body.getP_IVA());
-        update.setEmail(body.getEmail());
-        update.setRegisterDate(body.getRegisterDate());
-        update.setLastcontactDate(body.getLastcontactDate());
-        update.setRevenue(body.getRevenue());
-        update.setPEC(body.getPEC());
-        update.setCompanyNumber(body.getCompanyNumber());
-        update.setContactMail(body.getContactMail());
-        update.setContactName(body.getContactName());
-        update.setContactSurname(body.getContactSurname());
-        update.setContactNumber(body.getContactNumber());
-        update.setBusinessLogo(body.getBusinessLogo());
+    public Clients clientUpdate(UUID clientId, ClientUpdateDTO body) {
+        Clients updateClient = this.findById(clientId);
+        updateClient.setBusinessType(body.businessType());
+        updateClient.setP_IVA(body.P_IVA());
+        updateClient.setEmail(body.email());
+        updateClient.setRegisterDate(LocalDate.now());
+        updateClient.setLastcontactDate(body.lastcontactDate());
+        updateClient.setRevenue(body.revenue());
+        updateClient.setPEC(body.PEC());
+        updateClient.setCompanyNumber(body.companyNumber());
+        updateClient.setContactMail(body.contactMail());
+        updateClient.setContactName(body.contactName());
+        updateClient.setContactSurname(body.contactSurname());
+        updateClient.setContactNumber(body.contactNumber());
+        updateClient.setBusinessLogo(body.businessLogo());
 
-        return clientsDAO.save(update);
+        return clientsDAO.save(updateClient);
     }
 
-    public Clients clientUpdate(UUID clientId, ClientUpdateDTO body) {
+    public Clients clientSave(NewClientDTO body) {
         Clients newClient = new Clients();
         newClient.setBusinessType(body.businessType());
         newClient.setP_IVA(body.P_IVA());

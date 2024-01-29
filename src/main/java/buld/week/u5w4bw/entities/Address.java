@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
-import buld.week.u5w4bw.Entities.Clients;
+import buld.week.u5w4bw.entities.Clients;
 
 import java.util.UUID;
 
