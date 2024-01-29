@@ -2,6 +2,7 @@ package buld.week.u5w4bw.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import buld.week.u5w4bw.entities.Clients;
 
 import java.util.UUID;
 

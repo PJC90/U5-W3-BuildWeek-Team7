@@ -5,14 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Setter
 public class Clients {
 
@@ -36,12 +37,18 @@ public class Clients {
     
     private Address address;
 
-    private List<Invoice> invoiceList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    @JsonIgnore
+    private List<Address> address;
 
-    private List<Address> addressList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "invoices_number")
+    @JsonIgnore
+    private List<Invoice> invoices;
 
 
-    public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo, Address address) {
+    public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo) {
         this.businessType = businessType;
         P_IVA = p_IVA;
         this.email = email;
@@ -55,28 +62,9 @@ public class Clients {
         this.contactSurname = contactSurname;
         this.contactNumber = contactNumber;
         this.businessLogo = businessLogo;
-        this.address = address;
+
     }
 
 
-    @Override
-    public String toString() {
-        return "Clients{" +
-                "clientid=" + clientid +
-                ", businessType=" + businessType +
-                ", P_IVA='" + P_IVA + '\'' +
-                ", email='" + email + '\'' +
-                ", registerDate=" + registerDate +
-                ", lastcontactDate=" + lastcontactDate +
-                ", revenue=" + revenue +
-                ", PEC='" + PEC + '\'' +
-                ", companyNumber='" + companyNumber + '\'' +
-                ", contactMail='" + contactMail + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", contactSurname='" + contactSurname + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", businessLogo='" + businessLogo + '\'' +
-                ", address=" + address +
-                '}';
-    }
+
 }

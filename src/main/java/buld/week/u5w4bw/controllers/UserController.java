@@ -4,11 +4,12 @@ import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -21,6 +22,54 @@ public class UserController {
     public Page<User> usersList(@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue ="userId")String order){
          return userService.findAll(page,size,order);
     }
+
+    @GetMapping("/{userId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @ResponseStatus(HttpStatus.OK)
+    public User uniqueUser(@PathVariable UUID userId){
+         return  userService.findById(userId);
+    }
+
+    @PutMapping("/{userId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public User userUpdate(@PathVariable UUID userId,@RequestBody User body ){
+        return userService.userUpdate(userId,body);
+    }
+
+
+    @DeleteMapping("/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAuthority(ADMIN)")
+    public void deleteUser(@PathVariable UUID userId) {
+        userService.userDelete(userId);
+    }
+
+
+    //------------------ /me --------------------\\
+
+
+    @GetMapping("/me")
+    public User profilePage(@AuthenticationPrincipal User utente){
+        return utente;
+    }
+
+
+    @PutMapping("/me/{userId}")
+    public User updateUser(@AuthenticationPrincipal User userId,@RequestBody User body){
+        return userService.userUpdate(userId.getUserId(),body);
+    }
+
+    @DeleteMapping("/me/{userId}")
+    public void  cancellaUtente(User userId){
+       userService.userDelete(userId.getUserId());
+    }
+
+
+
+
+
+
+
 
 
 
