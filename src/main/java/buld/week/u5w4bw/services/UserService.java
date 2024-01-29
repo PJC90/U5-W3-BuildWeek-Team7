@@ -3,7 +3,7 @@ package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.NotFoundException;
-import buld.week.u5w4bw.repositories.UserDao;
+import buld.week.u5w4bw.repositories.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class UserService {
     @Autowired
-    UserDao userDao;
+    UserDAO userDao;
 
     public Page<User> findAll(int size,int page,String order){
         Pageable pageable= PageRequest.of(size,page, Sort.by(order));
