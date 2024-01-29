@@ -18,17 +18,17 @@ public class InvoiceService {
     @Autowired
     InvoiceDao invoiceDao;
 
-    public Page<Invoice> findAll(int size, int page, String order){
-        Pageable pageable= PageRequest.of(size,page, Sort.by(order));
+    public Page<Invoice> findAll(int size, int page, String order) {
+        Pageable pageable = PageRequest.of(size, page, Sort.by(order));
         return invoiceDao.findAll(pageable);
     }
 
-    public  Invoice findById(UUID number){
-        return invoiceDao.findById(number).orElseThrow(()->new NotFoundException(number));
+    public Invoice findById(UUID number) {
+        return invoiceDao.findById(number).orElseThrow(() -> new NotFoundException(number));
     }
 
-    public Invoice invoiceUpdate(UUID number,Invoice body){
-        Invoice update=this.findById(number);
+    public Invoice invoiceUpdate(UUID number, Invoice body) {
+        Invoice update = this.findById(number);
         update.setDate(body.getDate());
         update.setImports(body.getImports());
         update.setState(body.getState());
@@ -37,8 +37,8 @@ public class InvoiceService {
     }
 
 
-    public void invoiceDelete(UUID number){
-        Invoice delete=this.findById(number);
+    public void invoiceDelete(UUID number) {
+        Invoice delete = this.findById(number);
         invoiceDao.delete(delete);
     }
 }
