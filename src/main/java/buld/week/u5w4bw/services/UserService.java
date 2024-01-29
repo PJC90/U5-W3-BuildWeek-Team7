@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.services;
+package buld.week.u5w4bw.Services;
 
 
 import buld.week.u5w4bw.entities.User;
