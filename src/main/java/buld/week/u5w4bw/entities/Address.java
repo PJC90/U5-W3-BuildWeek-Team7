@@ -1,8 +1,8 @@
 package buld.week.u5w4bw.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import buld.week.u5w4bw.entities.Clients;
 
 import java.util.UUID;
 
@@ -14,10 +14,19 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class Address {
-    private UUID id;
+    @Id
+    @GeneratedValue
+
+    private UUID addressId;
+
+
+
+
     private String Street;
     private int houseNumber;
     private String provincia;
     private int postalCode;
     private String city;
+    @ManyToOne
+    private Clients client;
 }

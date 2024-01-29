@@ -44,5 +44,9 @@ public class UserService {
         userDao.delete(delete);
     }
 
+    public User findByEmail(String email){
+        return userDao.findByEmail(email).orElseThrow(()-> new NotFoundException("Utente con email " + email + " non trovato..."));
+    }
+
 
 }

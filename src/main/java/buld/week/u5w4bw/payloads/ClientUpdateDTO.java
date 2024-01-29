@@ -1,36 +1,36 @@
 package buld.week.u5w4bw.payloads;
 
-import buld.week.u5w4bw.entities.enums.BusinessType;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
+import buld.week.u5w4bw.entities.enums.BusinessType;
+
 import java.time.LocalDate;
 
-public record NewClientDTO(
+public record ClientUpdateDTO(
 
 
-        @NotEmpty
+        @NotBlank
         BusinessType businessType,
-        @NotEmpty
+        @NotBlank
         String P_IVA,
-        @NotEmpty
+        @NotBlank
         @Email
         String email,
-
         LocalDate lastcontactDate,
-        @NotNull
+        @NotBlank
         double revenue,
-        @NotEmpty
+        @NotBlank
         String PEC,
-        @NotEmpty
+        @NotBlank
         String companyNumber,
-        @NotEmpty
+        @NotBlank
         String contactMail,
-        @NotEmpty
+        @NotBlank
         String contactName,
-        @NotEmpty
+        @NotBlank
         String contactSurname,
-        @NotEmpty
+        @NotBlank
         String contactNumber,
         String businessLogo
 
