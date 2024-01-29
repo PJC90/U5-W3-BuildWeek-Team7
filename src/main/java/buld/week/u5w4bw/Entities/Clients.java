@@ -16,6 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Setter
 public class Clients {
+    @Id
+    @GeneratedValue
     private UUID clientId;
     @Enumerated(EnumType.STRING)
     private BusinessType businessType;
