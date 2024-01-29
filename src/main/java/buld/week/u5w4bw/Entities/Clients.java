@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.entities;
 
-import buld.week.u5w4bw.Entities.enums.BusinessType;
+import buld.week.u5w4bw.entities.enums.BusinessType;
 import jakarta.persistence.Enumerated;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
