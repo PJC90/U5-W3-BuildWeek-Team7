@@ -1,26 +1,23 @@
 package buld.week.u5w4bw.entities;
 
-import buld.week.u5w4bw.Entities.enums.BusinessType;
-import buld.week.u5w4bw.entities.Address;
-
+import buld.week.u5w4bw.entities.enums.BusinessType;
 import jakarta.persistence.Enumerated;
-
-
-import buld.week.u5w4bw.entities.Invoice;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Setter
 public class Clients {
+    @Id
+    @GeneratedValue
     private UUID clientId;
     @Enumerated(EnumType.STRING)
     private BusinessType businessType;
@@ -38,17 +35,17 @@ public class Clients {
     private String businessLogo;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "addressId")
     @JsonIgnore
     private List<Address> address;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "invoices_number")
+    @JoinColumn(name = "number")
     @JsonIgnore
     private List<Invoice> invoices;
 
 
-    public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo, Address address) {
+    public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo) {
         this.businessType = businessType;
         P_IVA = p_IVA;
         this.email = email;
@@ -64,9 +61,6 @@ public class Clients {
         this.businessLogo = businessLogo;
 
     }
-
-
-
 
 
 

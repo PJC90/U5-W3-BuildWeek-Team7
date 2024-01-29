@@ -1,8 +1,8 @@
-package buld.week.u5w4bw.services;
+package buld.week.u5w4bw.Services;
 
 import buld.week.u5w4bw.entities.Invoice;
 import buld.week.u5w4bw.exceptions.NotFoundException;
-import buld.week.u5w4bw.repositories.InvoiceDao;
+import buld.week.u5w4bw.repositories.InvoiceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +16,7 @@ import java.util.UUID;
 public class InvoiceService {
 
     @Autowired
-    InvoiceDao invoiceDao;
+    InvoiceDAO invoiceDao;
 
     public Page<Invoice> findAll(int size, int page, String order) {
         Pageable pageable = PageRequest.of(size, page, Sort.by(order));
