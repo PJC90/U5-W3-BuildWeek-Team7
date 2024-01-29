@@ -1,5 +1,8 @@
 package buld.week.u5w4bw.entities;
 
+
+import buld.week.u5w4bw.entities.enums.Roles;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
