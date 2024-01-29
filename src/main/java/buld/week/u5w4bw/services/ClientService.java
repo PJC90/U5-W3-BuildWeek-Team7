@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.services;
 
-import buld.week.u5w4bw.Entities.Clients;
+import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.payloads.ClientUpdateDTO;
 import buld.week.u5w4bw.payloads.NewClientDTO;
