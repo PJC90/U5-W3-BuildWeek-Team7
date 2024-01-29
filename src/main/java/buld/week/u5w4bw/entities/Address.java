@@ -1,4 +1,4 @@
-package buld.week.u5w4bw.Entities;
+package buld.week.u5w4bw.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
