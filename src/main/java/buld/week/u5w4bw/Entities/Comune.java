@@ -21,7 +21,7 @@ public class Comune {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "province_code")
+    @Column(name = "province_id")
     private String provinceCode;
 
     @Column(name = "comune_code")

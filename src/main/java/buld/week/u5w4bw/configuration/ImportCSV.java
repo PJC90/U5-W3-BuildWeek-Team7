@@ -2,16 +2,35 @@ package buld.week.u5w4bw.configuration;
 
 import buld.week.u5w4bw.entities.Comune;
 import buld.week.u5w4bw.entities.Province;
+import buld.week.u5w4bw.services.ComuneService;
+import buld.week.u5w4bw.services.ProvinceService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
 
+@Component
 public class ImportCSV {
 
-    private static void importProvinceFromCSV(String filename) {
+    private final ComuneService comuneService;
+    private final ProvinceService provinceService;
+
+    @Autowired
+    public ImportCSV(ComuneService comuneService, ProvinceService provinceService) {
+        this.comuneService = comuneService;
+        this.provinceService = provinceService;
+    }
+
+    public void importDataFromCSV(String provinceFilename, String comuneFilename) {
+        importProvinceFromCSV(provinceFilename);
+        importComuniFromCSV(comuneFilename);
+    }
+
+    private void importProvinceFromCSV(String filename) {
         try (FileReader reader = new FileReader(filename);
              CSVParser csvParser = CSVFormat.DEFAULT.withDelimiter(';').withFirstRecordAsHeader().parse(reader)) {
 
@@ -25,17 +44,18 @@ public class ImportCSV {
                 province.setNomeProvincia(name);
                 province.setSigla(provinceCode);
                 province.setRegione(regione);
-                // Salva la provincia nel database utilizzando JPA o un'altra libreria di persistenza
+
+                System.out.println(province);
+                provinceService.saveProvince(province);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    private static void importComuniFromCSV(String filename) {
+    private void importComuniFromCSV(String filename) {
         try (FileReader reader = new FileReader(filename);
-             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';').withFirstRecordAsHeader())) {
+             CSVParser csvParser = CSVFormat.DEFAULT.withDelimiter(';').withFirstRecordAsHeader().parse(reader)) {
 
             for (CSVRecord record : csvParser) {
                 String provinciaCode = record.get("Codice Provincia (Storico)(1)");
@@ -47,11 +67,10 @@ public class ImportCSV {
                 comune.setProvinceCode(provinciaCode);
                 comune.setComuneCode(comuneCode);
                 comune.setName(nomeComune);
-                // Salva il comune nel database utilizzando JPA o un'altra libreria di persistenza
+                comuneService.saveComune(comune);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

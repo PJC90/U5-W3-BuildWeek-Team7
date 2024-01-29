@@ -1,12 +1,12 @@
 package buld.week.u5w4bw.entities;
 
 import buld.week.u5w4bw.Entities.enums.BusinessType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -35,17 +35,15 @@ public class Clients {
     private String contactNumber;
     private String businessLogo;
     
-    private Address address;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     @JsonIgnore
-    private List<Address> address;
+    private List<Address> addressList;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "invoices_number")
     @JsonIgnore
-    private List<Invoice> invoices;
+    private List<Invoice> invoiceList;
 
 
     public Clients(BusinessType businessType, String p_IVA, String email, LocalDate registerDate, LocalDate lastcontactDate, double revenue, String PEC, String companyNumber, String contactMail, String contactName, String contactSurname, String contactNumber, String businessLogo) {
@@ -64,7 +62,6 @@ public class Clients {
         this.businessLogo = businessLogo;
 
     }
-
 
 
 }
