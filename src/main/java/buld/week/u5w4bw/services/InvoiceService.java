@@ -1,8 +1,7 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Invoice;
-import buld.week.u5w4bw.entities.Invoicestates;
-import buld.week.u5w4bw.entities.Roles;
+
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.repositories.InvoiceDao;
@@ -21,17 +20,17 @@ public class InvoiceService {
     @Autowired
     InvoiceDao invoiceDao;
 
-    public Page<Invoice> findAll(int size, int page, String order){
-        Pageable pageable= PageRequest.of(size,page, Sort.by(order));
+    public Page<Invoice> findAll(int size, int page, String order) {
+        Pageable pageable = PageRequest.of(size, page, Sort.by(order));
         return invoiceDao.findAll(pageable);
     }
 
-    public  Invoice findById(UUID number){
-        return invoiceDao.findById(number).orElseThrow(()->new NotFoundException(number));
+    public Invoice findById(UUID number) {
+        return invoiceDao.findById(number).orElseThrow(() -> new NotFoundException(number));
     }
 
-    public Invoice invoiceUpdate(UUID number,Invoice body){
-        Invoice update=this.findById(number);
+    public Invoice invoiceUpdate(UUID number, Invoice body) {
+        Invoice update = this.findById(number);
         update.setDate(body.getDate());
         update.setImports(body.getImports());
         update.setState(body.getState());
@@ -40,8 +39,8 @@ public class InvoiceService {
     }
 
 
-    public void invoiceDelete(UUID number){
-        Invoice delete=this.findById(number);
+    public void invoiceDelete(UUID number) {
+        Invoice delete = this.findById(number);
         invoiceDao.delete(delete);
     }
 }

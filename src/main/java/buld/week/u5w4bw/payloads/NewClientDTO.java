@@ -1,6 +1,6 @@
 package buld.week.u5w4bw.payloads;
 
-import buld.week.u5w4bw.Entities.Address;
+
 import buld.week.u5w4bw.Entities.enums.BusinessType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,12 +30,15 @@ public record NewClientDTO(
         String companyNumber,
         @NotEmpty
         String contactMail,
+        @NotEmpty
         String contactName,
+        @NotEmpty
         String contactSurname,
+        @NotEmpty
         String contactNumber,
         String businessLogo
 
 
-        ) {
+) {
 
 }
