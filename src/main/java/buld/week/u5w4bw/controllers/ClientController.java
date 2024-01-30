@@ -1,8 +1,11 @@
 package buld.week.u5w4bw.controllers;
 
 import buld.week.u5w4bw.entities.Clients;
+import buld.week.u5w4bw.entities.Invoice;
+import buld.week.u5w4bw.payloads.ClientUpdateDTO;
 import buld.week.u5w4bw.payloads.NewClientDTO;
 import buld.week.u5w4bw.services.ClientService;
+import ch.qos.logback.core.net.server.Client;
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,7 +28,7 @@ public class ClientController {
     @GetMapping
     public Page<Clients> getClients(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "10") int size,
-                                    @RequestParam(defaultValue = "id") String order) {
+                                    @RequestParam(defaultValue = "clientId") String order) {
         return clientService.findAll(page, size, order);
     }
 
@@ -40,6 +43,11 @@ public class ClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public Clients saveNewClients(@RequestBody NewClientDTO payload) {
         return clientService.clientSave(payload);
+    }
+
+    @PutMapping("/{clientId}")
+    public Clients clientUpdate(@PathVariable UUID clientId, @RequestBody ClientUpdateDTO updateBody) {
+        return clientService.clientUpdate(clientId, updateBody);
     }
 
     @DeleteMapping("/{clientId}")
