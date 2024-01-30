@@ -67,25 +67,25 @@ public class ClientController {
     }
 
 
-    @GetMapping("/{revenue}")
-    public List<Clients> mapFatturato(@RequestParam double revenue) {
+    @GetMapping("/revenue/{revenue}")
+    public List<Clients> mapFatturato(@PathVariable double revenue) {
         return clientService.getClientsByRevenue(revenue);
     }
 
-    @GetMapping("/{registrationDate}")
-    public List<Clients> mapRegistrationDate(@RequestParam LocalDate registrationDate) {
+    @GetMapping("/registrationDate/{registrationDate}")
+    public List<Clients> mapRegistrationDate(@PathVariable LocalDate registrationDate) {
         return clientService.getClientsbyRegisterDate(registrationDate);
 
     }
 
-    @GetMapping("/{lastcontactDate}")
-    public List<Clients> mapLastContact(@RequestParam LocalDate lastcontactDate) {
+    @GetMapping("/lastcontactDate/{lastcontactDate}")
+    public List<Clients> mapLastContact(@PathVariable LocalDate lastcontactDate) {
         return clientService.getClientsbyLastContact(lastcontactDate);
 
     }
 
-    @GetMapping("/{contactName}")
-    public List<Clients> mapClientsName(@RequestParam String contactName) {
+    @GetMapping("/contactName/{contactName}")
+    public List<Clients> mapClientsName(@PathVariable String contactName) {
         return clientService.getClientsbyName(contactName);
 
     }

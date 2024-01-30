@@ -23,10 +23,10 @@ public interface ClientsDAO extends JpaRepository<Clients, UUID> {
     @Query("SELECT c FROM Clients c WHERE c.registerDate >= :data")
     List<Clients> filterByRegisterDate(@Param("data") LocalDate data);
 
-    @Query("SELECT f FROM Cliente f WHERE f.lastcontactDate >= :data")
+    @Query("SELECT f FROM Clients f WHERE f.lastcontactDate >= :data")
     List<Clients> filterBylastContactDate(@Param("data") LocalDate data);
 
-    @Query("SELECT f FROM Clients f WHERE f.contactName LIKE :name/**")
+    @Query("SELECT f FROM Clients f WHERE f.contactName LIKE %:name%")
     List<Clients> filterByContactName(@Param("name") String contactName);
 
 
