@@ -3,7 +3,6 @@ package buld.week.u5w4bw.entities;
 import buld.week.u5w4bw.entities.enums.Invoicestates;
 import jakarta.persistence.*;
 import lombok.*;
-import buld.week.u5w4bw.entities.Clients;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -25,4 +24,6 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Clients client;
+
+
 }
