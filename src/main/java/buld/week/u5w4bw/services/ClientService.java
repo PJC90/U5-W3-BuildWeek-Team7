@@ -1,17 +1,22 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Clients;
+import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.payloads.ClientUpdateDTO;
 import buld.week.u5w4bw.payloads.NewClientDTO;
 import buld.week.u5w4bw.repositories.ClientsDAO;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,6 +26,9 @@ public class ClientService {
 
     @Autowired
     ClientsDAO clientsDAO;
+
+    @Autowired
+    Cloudinary cloudinary;
 
     public Page<Clients> findAll(int size, int page, String order) {
         Pageable pageable = PageRequest.of(size, page, Sort.by(order));
@@ -74,6 +82,14 @@ public class ClientService {
     public void clientDelete(UUID clientId) {
         Clients delete = this.findById(clientId);
         clientsDAO.delete(delete);
+    }
+
+    public  String uploadImage(MultipartFile file, UUID clientId) throws IOException {
+        Clients found = this.findById(clientId);
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        found.setBusinessLogo(url);
+        clientsDAO.save(found);
+        return url;
     }
 
 }
