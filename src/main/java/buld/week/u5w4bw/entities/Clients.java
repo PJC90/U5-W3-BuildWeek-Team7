@@ -36,7 +36,7 @@ public class Clients {
     private String businessLogo;
     
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "clientId")
     @JsonIgnore
     private List<Address> addressList;
 
