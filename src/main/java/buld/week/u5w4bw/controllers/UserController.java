@@ -20,21 +20,21 @@ public class UserController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Page<User> usersList(@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue ="userId")String order){
-         return userService.findAll(page,size,order);
+    public Page<User> usersList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "userId") String order) {
+        return userService.findAll(page, size, order);
     }
 
     @GetMapping("/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.OK)
-    public User uniqueUser(@PathVariable UUID userId){
-         return  userService.findById(userId);
+    public User uniqueUser(@PathVariable UUID userId) {
+        return userService.findById(userId);
     }
 
     @PutMapping("/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public User userUpdate(@PathVariable UUID userId,@RequestBody User body ){
-        return userService.userUpdate(userId,body);
+    public User userUpdate(@PathVariable UUID userId, @RequestBody User body) {
+        return userService.userUpdate(userId, body);
     }
 
 
@@ -50,7 +50,7 @@ public class UserController {
 
 
     @GetMapping("/me")
-    public User profilePage(@AuthenticationPrincipal User utente){
+    public User profilePage(@AuthenticationPrincipal User utente) {
         return utente;
     }
 
@@ -63,14 +63,14 @@ public class UserController {
     @DeleteMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void  cancellaUtente(User userId){
-       userService.userDelete(userId.getUserId());
+    public void cancellaUtente(@AuthenticationPrincipal User userId) {
+        userService.userDelete(userId.getUserId());
     }
 
-@PatchMapping("/{userId}/upload")
-@ResponseStatus(HttpStatus.CREATED)
-@PreAuthorize("hasAuthority('ADMIN')")
+    @PatchMapping("/{userId}/upload")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String uploadAvatarImg(@RequestParam("image") MultipartFile file, @PathVariable UUID userId) throws Exception {
         return userService.uploadImage(file, userId);
-}
+    }
 }
