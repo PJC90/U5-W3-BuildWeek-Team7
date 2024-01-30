@@ -1,7 +1,6 @@
 package buld.week.u5w4bw.entities;
 
 import buld.week.u5w4bw.entities.enums.BusinessType;
-import jakarta.persistence.Enumerated;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,9 +35,9 @@ public class Clients {
     private String contactSurname;
     private String contactNumber;
     private String businessLogo;
-    
+
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @JoinColumn
     @JsonIgnore
     private List<Address> addressList;
 
