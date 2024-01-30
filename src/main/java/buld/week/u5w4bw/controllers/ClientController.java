@@ -14,6 +14,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -62,5 +64,29 @@ public class ClientController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uploadAvatarImg(@RequestParam("image") MultipartFile file, @PathVariable UUID clientId) throws Exception {
         return clientService.uploadImage(file, clientId);
+    }
+
+
+    @GetMapping("/{revenue}")
+    public List<Clients> mapFatturato(@RequestParam double revenue) {
+        return clientService.getClientsByRevenue(revenue);
+    }
+
+    @GetMapping("/{registrationDate}")
+    public List<Clients> mapRegistrationDate(@RequestParam LocalDate registrationDate) {
+        return clientService.getClientsbyRegisterDate(registrationDate);
+
+    }
+
+    @GetMapping("/{lastcontactDate}")
+    public List<Clients> mapLastContact(@RequestParam LocalDate lastcontactDate) {
+        return clientService.getClientsbyLastContact(lastcontactDate);
+
+    }
+
+    @GetMapping("/{contactName}")
+    public List<Clients> mapClientsName(@RequestParam String contactName) {
+        return clientService.getClientsbyName(contactName);
+
     }
 }
