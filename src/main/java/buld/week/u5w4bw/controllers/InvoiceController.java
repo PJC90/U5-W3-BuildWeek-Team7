@@ -56,24 +56,6 @@ public class InvoiceController {
     public void invoiceDelete(@PathVariable UUID number){
         invoiceService.invoiceDelete(number);
     }
-    //-------------------------- /me--------------------\\
-
-    @GetMapping("/me")
-    public Invoice profiloUtente(@AuthenticationPrincipal Invoice invoice){
-        return invoice;
-    }
-
-
-    @PutMapping("/me/{number}")
-    public Invoice invoiceUpdate(@AuthenticationPrincipal Invoice number,@RequestBody Invoice body){
-        return invoiceService.invoiceUpdate(number.getNumber(),body);
-    }
-
-
-    @DeleteMapping("/me/{number}")
-    public void  invoiceDelete(Invoice number){
-        invoiceService.invoiceDelete(number.getNumber());
-    }
 
 
 

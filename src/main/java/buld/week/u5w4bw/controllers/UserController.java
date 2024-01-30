@@ -55,12 +55,12 @@ public class UserController {
     }
 
 
-    @PutMapping("/me/{userId}")
+    @PutMapping("/me")
     public User updateUser(@AuthenticationPrincipal User userId,@RequestBody User body){
         return userService.userUpdate(userId.getUserId(),body);
     }
 
-    @DeleteMapping("/me/{userId}")
+    @DeleteMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasAuthority('ADMIN')")
     public void  cancellaUtente(User userId){
