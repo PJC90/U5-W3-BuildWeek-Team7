@@ -1,8 +1,13 @@
 package buld.week.u5w4bw.services;
 
+import buld.week.u5w4bw.entities.Address;
+import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.entities.Invoice;
+import buld.week.u5w4bw.entities.enums.Invoicestates;
 import buld.week.u5w4bw.exceptions.NotFoundException;
-import buld.week.u5w4bw.repositories.InvoiceDao;
+import buld.week.u5w4bw.payloads.AddressDTO;
+import buld.week.u5w4bw.payloads.InvoiceDTO;
+import buld.week.u5w4bw.repositories.InvoiceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,15 +19,24 @@ import java.util.UUID;
 
 @Service
 public class InvoiceService {
-
     @Autowired
-    InvoiceDao invoiceDao;
+    private ClientService clientService;
+    @Autowired
+    InvoiceDAO invoiceDao;
 
     public Page<Invoice> findAll(int size, int page, String order) {
         Pageable pageable = PageRequest.of(size, page, Sort.by(order));
         return invoiceDao.findAll(pageable);
     }
-
+    public Invoice saveInvoice(InvoiceDTO payload) {
+        Invoice invoice = new Invoice();
+        invoice.setState(Invoicestates.UNPAID);
+        invoice.setDate(payload.date());
+        invoice.setImports(payload.imports());
+        Clients client = clientService.findById(payload.client_id());
+        invoice.setClient(client);
+        return invoiceDao.save(invoice);
+    }
     public Invoice findById(UUID number) {
         return invoiceDao.findById(number).orElseThrow(() -> new NotFoundException(number));
     }

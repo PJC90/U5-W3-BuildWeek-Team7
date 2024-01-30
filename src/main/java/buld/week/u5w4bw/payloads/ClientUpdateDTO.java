@@ -3,7 +3,7 @@ package buld.week.u5w4bw.payloads;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotBlank;
-import buld.week.u5w4bw.Entities.enums.BusinessType;
+import buld.week.u5w4bw.entities.enums.BusinessType;
 
 import java.time.LocalDate;
 

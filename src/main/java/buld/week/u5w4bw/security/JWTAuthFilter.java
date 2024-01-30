@@ -1,9 +1,10 @@
 package buld.week.u5w4bw.security;
 
+import buld.week.u5w4bw.services.UserService;
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.UnauthorizedException;
 
-import buld.week.u5w4bw.services.UserService;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

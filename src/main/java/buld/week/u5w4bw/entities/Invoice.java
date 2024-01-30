@@ -22,8 +22,7 @@ public class Invoice {
     private double imports;
     @Enumerated(EnumType.STRING)
     private Invoicestates state;
-
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Clients client;
-
 }
