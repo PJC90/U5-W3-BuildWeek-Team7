@@ -1,11 +1,9 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Address;
-import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.payloads.AddressDTO;
 import buld.week.u5w4bw.repositories.AddressDAO;
-import buld.week.u5w4bw.repositories.ClientsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,8 +15,7 @@ import java.util.UUID;
 
 @Service
 public class AddressService {
-    @Autowired
-    private ClientService clientService;
+
     @Autowired
     private AddressDAO addressDAO;
 
@@ -39,8 +36,6 @@ public class AddressService {
         address.setStreet(payload.street());
         address.setHouseNumber(payload.houseNumber());
         address.setPostalCode(payload.zipCode());
-        Clients client = clientService.findById(payload.client_id());
-        address.setClient(client);
         return addressDAO.save(address);
     }
 

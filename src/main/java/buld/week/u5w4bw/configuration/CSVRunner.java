@@ -24,7 +24,7 @@ public class CSVRunner implements CommandLineRunner {
         String comuneFilename = "./CSV/comuni-italiani.csv";
 
 
-        //  importCSV.importDataFromCSV(provinceFilename, comuneFilename);
+        //importCSV.importDataFromCSV(provinceFilename, comuneFilename);
 
     }
 }
