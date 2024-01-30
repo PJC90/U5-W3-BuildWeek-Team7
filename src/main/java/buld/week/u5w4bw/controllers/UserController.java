@@ -54,14 +54,14 @@ public class UserController {
     }
 
 
-    @PutMapping("/me/{userId}")
+    @PutMapping("/me")
     public User updateUser(@AuthenticationPrincipal User userId,@RequestBody User body){
         return userService.userUpdate(userId.getUserId(),body);
     }
 
-    @DeleteMapping("/me/{userId}")
-    public void  cancellaUtente(User userId){
-       userService.userDelete(userId.getUserId());
+    @DeleteMapping("/me")
+    public void  cancellaUtente(@AuthenticationPrincipal User userId){
+        userService.userDelete(userId.getUserId());
     }
 
 

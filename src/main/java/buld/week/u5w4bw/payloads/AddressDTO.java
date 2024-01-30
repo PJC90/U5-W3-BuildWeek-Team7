@@ -12,11 +12,11 @@ public record AddressDTO(
         @NotEmpty(message = "Il campo houseNumber non può essere vuoto")
         int houseNumber,
         @NotEmpty(message = "Il campo provincia non può essere vuoto")
-        String provincia,
+        Long id_provincia,
         @NotEmpty(message = "Il campo zipCode non può essere vuoto")
         int zipCode,
         @NotEmpty(message = "Il campo city non può essere vuoto")
-        String city,
+        Long id_city,
         @NotNull(message = "l'id dell'user è un campo obbligatorio!")
         UUID client_id
 
