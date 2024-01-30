@@ -1,6 +1,8 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Address;
+import buld.week.u5w4bw.entities.Comune;
+import buld.week.u5w4bw.entities.Province;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.payloads.AddressDTO;
 import buld.week.u5w4bw.repositories.AddressDAO;
@@ -18,6 +20,10 @@ public class AddressService {
 
     @Autowired
     private AddressDAO addressDAO;
+    @Autowired
+    private  ComuneService comuneService;
+    @Autowired
+    private ProvinceService provinceService;
 
 
     public Page<Address> findAll(int size, int page, String order) {
@@ -31,8 +37,13 @@ public class AddressService {
     }
 
     public Address saveAddress(AddressDTO payload) {
+        Comune found = comuneService.findByid(payload.id_city());
+        Province found2 = provinceService.findById(payload.id_provincia());
         Address address = new Address();
-        address.setCity(payload.city());
+        address.setComune(found);
+        address.setProvince(found2);
+        address.setStreet(payload.street());
+        address.setCity(found.getName());
         address.setStreet(payload.street());
         address.setHouseNumber(payload.houseNumber());
         address.setPostalCode(payload.zipCode());

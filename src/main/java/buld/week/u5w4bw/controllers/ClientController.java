@@ -57,10 +57,10 @@ public class ClientController {
         clientService.clientDelete(clientId);
     }
 
-    @PatchMapping("/{userId}/upload")
+    @PatchMapping("/{clientId}/upload")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String uploadAvatarImg(@RequestParam("image") MultipartFile file, @PathVariable UUID userId) throws Exception {
-        return clientService.uploadImage(file, userId);
+    public String uploadAvatarImg(@RequestParam("image") MultipartFile file, @PathVariable UUID clientId) throws Exception {
+        return clientService.uploadImage(file, clientId);
     }
 }
