@@ -52,7 +52,6 @@ public class InvoiceController {
 
     @DeleteMapping("/{number}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasAuthority(ADMIN)")
     public void invoiceDelete(@PathVariable UUID number){
         invoiceService.invoiceDelete(number);
     }

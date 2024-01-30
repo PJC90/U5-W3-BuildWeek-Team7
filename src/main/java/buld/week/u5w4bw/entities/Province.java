@@ -18,7 +18,7 @@ public class Province {
     @GeneratedValue
     private long id;
 
-    @Column(name = "province_code")
+//    @Column(name = "province_code")
     private int provinceCode;
 
     private String sigla;
