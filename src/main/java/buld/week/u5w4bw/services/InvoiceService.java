@@ -2,9 +2,11 @@ package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.entities.Invoice;
+import buld.week.u5w4bw.entities.InvoiceStatus;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.payloads.InvoiceDTO;
 import buld.week.u5w4bw.repositories.InvoiceDAO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +22,8 @@ public class InvoiceService {
     @Autowired
     InvoiceDAO invoiceDao;
     @Autowired
+    private InvoiceStatusService invoiceStatusService;
+    @Autowired
     private ClientService clientService;
 
     public Page<Invoice> findAll(int size, int page, String order) {
@@ -29,7 +33,9 @@ public class InvoiceService {
 
     public Invoice saveInvoice(InvoiceDTO payload) {
         Invoice invoice = new Invoice();
-        invoice.setStatoFattura(invoice.getStatusList().get(2));
+        InvoiceStatus found = invoiceStatusService.findById(1);
+        invoice.setStatoFattura(found.getStatusList().get(2));
+        invoice.setInvoiceStatus(invoiceStatusService.findById(1));
         invoice.setDate(payload.date());
         invoice.setImports(payload.imports());
         Clients client = clientService.findById(payload.client_id());
@@ -41,20 +47,7 @@ public class InvoiceService {
         return invoiceDao.findById(number).orElseThrow(() -> new NotFoundException(number));
     }
 
-    //patch solo stato fattura
-    public Invoice setInvoiceStatus(UUID id_invoice, int index) {
 
-        Invoice found = this.findById(id_invoice);
-        found.setStatoFattura(found.getStatusList().get(index));
-        return found;
-    }
-
-
-    // metodo che ritorna una lista di status disponibili
-
-    public List<String> availableInvoiceStatus() {
-        return invoiceDao.getStatusList();
-    }
 
     public Invoice invoiceUpdate(UUID number, Invoice body) {
         Invoice update = this.findById(number);

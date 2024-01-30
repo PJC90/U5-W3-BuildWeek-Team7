@@ -23,7 +23,7 @@ public class Address {
     private String city;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "province_code")
+    @JoinColumn(name = "province_id")
     private Province province;
 
 

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -84,12 +85,32 @@ public class ClientService {
         clientsDAO.delete(delete);
     }
 
-    public  String uploadImage(MultipartFile file, UUID clientId) throws IOException {
+    public String uploadImage(MultipartFile file, UUID clientId) throws IOException {
         Clients found = this.findById(clientId);
         String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
         found.setBusinessLogo(url);
         clientsDAO.save(found);
         return url;
+    }
+
+    public List<Clients> getClientsByRevenue(double revenue) {
+        return clientsDAO.filterByYearlyRevenue(revenue);
+    }
+
+    public List <Clients> getClientsbyRegisterDate (LocalDate registrationDate) {
+        return clientsDAO.filterByRegisterDate(registrationDate);
+    }
+
+    public List<Clients> getClientsbyLastContact(LocalDate lastcontactDate) {
+        return clientsDAO.filterBylastContactDate(lastcontactDate);
+
+
+    }
+
+    public List<Clients> getClientsbyName(String contactName) {
+        return clientsDAO.filterByContactName(contactName);
+
+
     }
 
 }

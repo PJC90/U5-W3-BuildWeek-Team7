@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record InvoiceDTO(
-        @NotNull(message = "state è un campo obbligatorio")
-        Invoicestates state,
         @NotEmpty(message = "imports è un campo obbligatorio")
         double imports,
         @NotEmpty(message = "la data è obbligatoria")
