@@ -4,19 +4,25 @@ package buld.week.u5w4bw.services;
 import buld.week.u5w4bw.entities.User;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.repositories.UserDAO;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
 public class UserService {
     @Autowired
     UserDAO userDao;
+    @Autowired
+    Cloudinary cloudinary;
 
     public Page<User> findAll(int size,int page,String order){
         Pageable pageable= PageRequest.of(size,page, Sort.by(order));
@@ -48,5 +54,12 @@ public class UserService {
         return userDao.findByEmail(email).orElseThrow(()-> new NotFoundException("Utente con email " + email + " non trovato..."));
     }
 
+    public  String uploadImage(MultipartFile file, UUID userId) throws IOException {
+        User found = this.findById(userId);
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        found.setAvatar(url);
+        userDao.save(found);
+        return url;
+    }
 
 }
