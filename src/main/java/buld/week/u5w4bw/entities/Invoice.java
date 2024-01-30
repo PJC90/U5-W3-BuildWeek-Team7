@@ -25,13 +25,9 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Clients client;
-
-    private List<String> statusList = new ArrayList<>(Arrays.asList("Pagata", "Da pagare", "Emessa"));
-
-
-    public void addStatus(String status) {
-        statusList.add(status);
-    }
+    @ManyToOne
+    @JoinColumn(name = "invoice_status_list")
+    private InvoiceStatus invoiceStatus;
 
 
 }

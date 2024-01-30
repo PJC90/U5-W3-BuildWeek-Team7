@@ -53,22 +53,4 @@ public class InvoiceController {
         invoiceService.invoiceDelete(number);
     }
 
-
-    // ottengo lista degli stati fattura
-
-    @GetMapping("/status")
-    @PreAuthorize("hasAuthority(ADMIN)")
-    public List<String> getStatuses() {
-        return invoiceService.availableInvoiceStatus();
-    }
-
-
-    // settare SOLO stato fattura
-    @PatchMapping("/{id_invoice}/status/update")
-    @PreAuthorize("hasAuthority(ADMIN)")
-    public Invoice updateStatus(@PathVariable UUID id_invoice, @RequestParam(name = "index") int index) {
-        return invoiceService.setInvoiceStatus(id_invoice, index);
-    }
-
-
 }
