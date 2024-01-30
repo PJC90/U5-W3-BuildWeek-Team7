@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,6 +47,13 @@ public class InvoiceService {
         Invoice found = this.findById(id_invoice);
         found.setStatoFattura(found.getStatusList().get(index));
         return found;
+    }
+
+
+    // metodo che ritorna una lista di status disponibili
+
+    public List<String> availableInvoiceStatus() {
+        return invoiceDao.getStatusList();
     }
 
     public Invoice invoiceUpdate(UUID number, Invoice body) {
