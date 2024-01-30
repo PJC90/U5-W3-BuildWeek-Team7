@@ -25,7 +25,7 @@ public class ClientController {
     @GetMapping
     public Page<Clients> getClients(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "10") int size,
-                                    @RequestParam(defaultValue = "id") String order) {
+                                    @RequestParam(defaultValue = "clientId") String order) {
         return clientService.findAll(page, size, order);
     }
 
@@ -49,10 +49,10 @@ public class ClientController {
         clientService.clientDelete(clientId);
     }
 
-    @PatchMapping("/{userId}/upload")
+    @PatchMapping("/{clientId}/upload")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String uploadAvatarImg(@RequestParam("image") MultipartFile file, @PathVariable UUID userId) throws Exception {
-        return clientService.uploadImage(file, userId);
+    public String uploadAvatarImg(@RequestParam("image") MultipartFile file, @PathVariable UUID clientId) throws Exception {
+        return clientService.uploadImage(file, clientId);
     }
 }

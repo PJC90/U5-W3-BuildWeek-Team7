@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @Setter
+@ToString
 public class Clients {
     @Id
     @GeneratedValue
