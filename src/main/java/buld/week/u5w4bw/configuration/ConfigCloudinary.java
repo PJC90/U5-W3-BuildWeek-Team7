@@ -12,8 +12,8 @@ import java.util.Map;
 public class ConfigCloudinary {
     @Bean
     public Cloudinary uploadImage(@Value("${cloudinary.name}") String name,
-                                  @Value("${cloudinary.name}") String apikey,
-                                  @Value("${cloudinary.name}") String secret) {
+                                  @Value("${cloudinary.apikey}") String apikey,
+                                  @Value("${cloudinary.secret}") String secret) {
         Map<String, String> config = new HashMap<>();
         config.put("cloud_name", name);
         config.put("api_key", apikey);
