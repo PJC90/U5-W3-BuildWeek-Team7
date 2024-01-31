@@ -1,6 +1,5 @@
 package buld.week.u5w4bw.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,7 +17,7 @@ public class Province {
     @GeneratedValue
     private long id;
 
-//    @Column(name = "province_code")
+    //  @Column(name = "province_code")
     private int provinceCode;
 
     private String sigla;
