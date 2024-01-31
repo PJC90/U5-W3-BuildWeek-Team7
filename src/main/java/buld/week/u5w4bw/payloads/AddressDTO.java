@@ -12,7 +12,7 @@ public record AddressDTO(
         @NotEmpty(message = "Il campo houseNumber non può essere vuoto")
         int houseNumber,
         @NotEmpty(message = "Il campo provincia non può essere vuoto")
-        Long id_provincia,
+        int provincia_code,
         @NotEmpty(message = "Il campo zipCode non può essere vuoto")
         int zipCode,
         @NotEmpty(message = "Il campo city non può essere vuoto")

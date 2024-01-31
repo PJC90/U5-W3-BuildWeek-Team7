@@ -38,7 +38,7 @@ public class AddressService {
 
     public Address saveAddress(AddressDTO payload) {
         Comune found = comuneService.findByid(payload.id_city());
-        Province found2 = provinceService.findById(payload.id_provincia());
+        Province found2 = provinceService.findByProviceCode(payload.provincia_code());
         Address address = new Address();
         address.setComune(found);
         address.setProvince(found2);

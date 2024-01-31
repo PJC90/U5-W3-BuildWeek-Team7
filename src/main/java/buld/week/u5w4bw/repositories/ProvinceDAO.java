@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProvinceDAO extends JpaRepository<Province, Long> {
+    Province findByProvinceCode(int code);
 }

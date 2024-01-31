@@ -32,5 +32,12 @@ public class ProvinceService {
         return provinceDAO.save(province);
     }
 
-
+    public Province findByProviceCode(int code) {
+        Province found = provinceDAO.findByProvinceCode(code);
+        if (found != null){
+            return found;
+        } else {
+            throw new NotFoundException(code);
+        }
+    }
 }
