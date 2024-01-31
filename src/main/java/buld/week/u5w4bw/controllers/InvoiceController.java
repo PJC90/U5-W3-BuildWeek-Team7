@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,6 +52,29 @@ public class InvoiceController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void invoiceDelete(@PathVariable UUID number){
         invoiceService.invoiceDelete(number);
+    }
+
+    //--------------------QUERIES--------------
+
+    @GetMapping("/filter/clientId")
+    public List<Invoice> filterByClient(@RequestParam(name = "clientId")UUID id){
+        return invoiceService.filterByClient(id);
+    }
+
+    @GetMapping("/filter/state")
+    public  List<Invoice> filterByState(@RequestParam(name = "state")String state){
+        return invoiceService.filterByState(state);
+    }
+
+    @GetMapping("/filter/date")
+    public List<Invoice> filterByDate(@RequestParam(name = "data")LocalDate data){
+        return  invoiceService.filterByDate(data);
+    }
+
+    @GetMapping("/filter/imports")
+    public List<Invoice> filterByImports(@RequestParam(name = "min")double min,@RequestParam(name = "max")double max){
+        return invoiceService.filterByImports(min, max);
+
     }
 
 }
