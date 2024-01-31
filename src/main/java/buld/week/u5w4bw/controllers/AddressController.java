@@ -2,8 +2,6 @@ package buld.week.u5w4bw.controllers;
 
 
 import buld.week.u5w4bw.entities.Address;
-import buld.week.u5w4bw.payloads.AddressDTO;
-import buld.week.u5w4bw.payloads.AddressResponseDTO;
 import buld.week.u5w4bw.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,12 +35,12 @@ public class AddressController {
     }
 
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public AddressResponseDTO saveNewAddress(@RequestBody AddressDTO payload) {
-        Address address = addressService.saveAddress(payload);
-        return new AddressResponseDTO(address.getId());
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public AddressResponseDTO saveNewAddress(@RequestBody AddressDTO payload) {
+//        Address address = addressService.saveAddress(payload);
+//        return new AddressResponseDTO(address.getId());
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

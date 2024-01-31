@@ -3,7 +3,10 @@ package buld.week.u5w4bw.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +20,6 @@ public class Province {
     @GeneratedValue
     private long id;
 
-    //  @Column(name = "province_code")
     private int provinceCode;
 
     private String sigla;
@@ -25,5 +27,8 @@ public class Province {
     private String nomeProvincia;
 
     private String regione;
+
+    @OneToMany(mappedBy = "province")
+    private List<Comune> comunesList;
 
 }

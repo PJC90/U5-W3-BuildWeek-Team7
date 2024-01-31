@@ -1,5 +1,6 @@
 package buld.week.u5w4bw.services;
 
+import buld.week.u5w4bw.entities.Comune;
 import buld.week.u5w4bw.entities.Province;
 import buld.week.u5w4bw.exceptions.NotFoundException;
 import buld.week.u5w4bw.repositories.ProvinceDAO;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProvinceService {
@@ -32,12 +35,18 @@ public class ProvinceService {
         return provinceDAO.save(province);
     }
 
-    public Province findByProviceCode(int code) {
+    public Province findByProvinceCode(int code) {
         Province found = provinceDAO.findByProvinceCode(code);
-        if (found != null){
+        if (found != null) {
             return found;
         } else {
             throw new NotFoundException(code);
         }
+    }
+
+
+    // torna una lista di comuni per ogni provincia
+    public List<Comune> getComunesList(int prov_code) {
+        return provinceDAO.getComuneList(prov_code);
     }
 }

@@ -26,8 +26,8 @@ public class ImportCSV {
     }
 
     public void importDataFromCSV(String provinceFilename, String comuneFilename) {
-        importProvinceFromCSV(provinceFilename);
-        importComuniFromCSV(comuneFilename);
+        //importProvinceFromCSV(provinceFilename);
+        //importComuniFromCSV(comuneFilename);
     }
 
     private void importProvinceFromCSV(String filename) {
@@ -40,7 +40,7 @@ public class ImportCSV {
                 String regione = record.get("Regione");
                 int code = Integer.parseInt(record.get("Code"));
 
-                // Crea e salva l'oggetto Province nel database
+                // Crea e salva l'oggetto Province nel db
                 Province province = new Province();
                 province.setNomeProvincia(name);
                 province.setSigla(provinceCode);
@@ -64,12 +64,17 @@ public class ImportCSV {
                 int comuneCode = Integer.parseInt(record.get("Progressivo del Comune (2)"));
                 String nomeComune = record.get("Denominazione in italiano");
 
-                // Crea e salva l'oggetto Comune nel database
-                Comune comune = new Comune();
-                comune.setProvinceCode(provinciaCode);
-                comune.setComuneCode(comuneCode);
-                comune.setName(nomeComune);
-                comuneService.saveComune(comune);
+                // Trova la provincia corrispondente dal codice
+                Province provincia = provinceService.findByProvinceCode(provinciaCode);
+
+                // Crea e salva l'oggetto Comune nel database con l'ID della provincia corrispondente
+                if (provincia != null) {
+                    Comune comune = new Comune();
+                    comune.setProvince(provincia);
+                    comune.setComuneCode(comuneCode);
+                    comune.setName(nomeComune);
+                    comuneService.saveComune(comune);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
