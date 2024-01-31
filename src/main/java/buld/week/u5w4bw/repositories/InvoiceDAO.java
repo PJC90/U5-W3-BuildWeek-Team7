@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,11 +16,12 @@ public interface InvoiceDAO extends JpaRepository<Invoice, UUID> {
     List<Invoice> filterByClient(@Param("id") UUID id);
 
     @Query("SELECT i FROM Invoice i WHERE i.statoFattura= :stato")
-    List<Invoice> filterByState(@Param("stato")String stato);
+    List<Invoice> filterByState(@Param("stato") String stato);
 
-    @Query("SELECT i FROM Invoice i WHERE i.date= :data")
-    List<Invoice> filterByDate(@Param("data")LocalDate data);
+    @Query("SELECT i FROM Invoice i WHERE YEAR(i.date)= :year")
+    List<Invoice> filterByDate(@Param("year") int year);
+
 
     @Query("SELECT i FROM Invoice i WHERE i.imports BETWEEN :min AND :max")
-    List<Invoice> filterByImports(@Param("min")double min,@Param("max")double max);
+    List<Invoice> filterByImports(@Param("min") double min, @Param("max") double max);
 }
