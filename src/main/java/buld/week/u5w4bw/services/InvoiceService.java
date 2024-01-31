@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -63,6 +64,27 @@ public class InvoiceService {
         Invoice delete = this.findById(number);
         invoiceDao.delete(delete);
     }
+
+    //--------------------QUERIES---------------\\
+
+
+    public List<Invoice> filterByClient(UUID id){
+        return invoiceDao.filterByClient(id);
+    }
+
+    public  List<Invoice> filterByState(String stato){
+        return invoiceDao.filterByState(stato);
+    }
+
+    public  List<Invoice> filterByDate(LocalDate data){
+        return invoiceDao.filterByDate(data);
+    }
+
+    public List<Invoice> filterByImports(double min , double max){
+       return invoiceDao.filterByImports(min, max);
+    }
+
+
 
 
 }
