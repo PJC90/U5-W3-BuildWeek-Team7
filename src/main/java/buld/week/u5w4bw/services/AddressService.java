@@ -1,7 +1,10 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Address;
+import buld.week.u5w4bw.entities.Comune;
+import buld.week.u5w4bw.entities.Province;
 import buld.week.u5w4bw.exceptions.NotFoundException;
+import buld.week.u5w4bw.payloads.AddressDTO;
 import buld.week.u5w4bw.repositories.AddressDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,19 +36,19 @@ public class AddressService {
         return addressDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
-//    public Address saveAddress(AddressDTO payload) {
-//        Comune found = comuneService.findByid(payload.id_city());
-//        Province found2 = provinceService.findByProviceCode(payload.provincia_code());
-//        Address address = new Address();
-//        address.setComune(found);
-//        address.setProvince(found2);
-//        address.setStreet(payload.street());
-//        address.setCity(found.getName());
-//        address.setStreet(payload.street());
-//        address.setHouseNumber(payload.houseNumber());
-//        address.setPostalCode(payload.zipCode());
-//        return addressDAO.save(address);
-//    }
+    public Address saveAddress(AddressDTO payload) {
+        Comune found = comuneService.findByid(payload.id_city());
+        Province found2 = provinceService.findByProvinceCode(payload.provincia_code());
+        Address address = new Address();
+        address.setComune(found);
+        address.setProvince(found2);
+        address.setStreet(payload.street());
+        address.setCity(found.getName());
+        address.setStreet(payload.street());
+        address.setHouseNumber(payload.houseNumber());
+        address.setPostalCode(payload.zipCode());
+        return addressDAO.save(address);
+    }
 
 
     public void FindByIdAndDelete(UUID id) {
