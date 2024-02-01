@@ -51,7 +51,13 @@ public class InvoiceService {
         Invoice update = this.findById(number);
         update.setDate(body.getDate());
         update.setImports(body.getImports());
-        update.setStatoFattura(update.getStatoFattura());
+        InvoiceStatus found = invoiceStatusService.findById(1);
+        for (int i = 0; i < found.getStatusList().size(); i++) {
+            if (body.getStatoFattura().equals(found.getStatusList().get(i))) {
+                update.setStatoFattura(found.getStatusList().get(i));
+                System.out.println(body.getStatoFattura());
+            }
+        }
 
         return invoiceDao.save(update);
     }
