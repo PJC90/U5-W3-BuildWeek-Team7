@@ -1,6 +1,7 @@
 package buld.week.u5w4bw.controllers;
 
 import buld.week.u5w4bw.entities.Comune;
+import buld.week.u5w4bw.entities.Province;
 import buld.week.u5w4bw.services.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,5 +22,10 @@ public class ProvinceController {
     @GetMapping("{prov_id}")
     public List<Comune> getComunesList(@PathVariable int prov_id) {
         return provinceService.getComunesList(prov_id);
+    }
+
+    @GetMapping("/all")
+    public List<Province> getAllProvince() {
+        return provinceService.getAllProvinces();
     }
 }

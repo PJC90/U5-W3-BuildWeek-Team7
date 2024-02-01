@@ -18,15 +18,17 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     @Autowired
     private AuthService authService;
+
     @PostMapping("/login")
-    public UserLoginResponseDTO login(@RequestBody UserLoginDTO body){
+    public UserLoginResponseDTO login(@RequestBody UserLoginDTO body) {
         String accessToken = authService.authenticateUser(body);
         return new UserLoginResponseDTO(accessToken);
     }
+
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponseDTO createUser(@RequestBody @Validated UserDTO newUserPayload, BindingResult validation){
-        if(validation.hasErrors()){
+    public UserResponseDTO createUser(@RequestBody @Validated UserDTO newUserPayload, BindingResult validation) {
+        if (validation.hasErrors()) {
             System.out.println(validation.hasErrors());
             throw new BadRequestException(validation.getAllErrors());
         } else {
@@ -35,3 +37,4 @@ public class AuthController {
         }
     }
 }
+

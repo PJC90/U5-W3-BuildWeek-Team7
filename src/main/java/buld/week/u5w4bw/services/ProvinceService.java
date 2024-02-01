@@ -27,6 +27,10 @@ public class ProvinceService {
     }
 
 
+    public List<Province> getAllProvinces() {
+        return provinceDAO.findAll();
+    }
+
     public Province findById(long id) {
         return provinceDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }

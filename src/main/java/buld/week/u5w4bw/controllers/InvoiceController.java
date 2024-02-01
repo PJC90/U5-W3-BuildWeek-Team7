@@ -55,7 +55,7 @@ public class InvoiceController {
 
     //--------------------QUERIES--------------
 
-    @GetMapping("/filter/clientId")
+    @GetMapping("/filter")
     public List<Invoice> filterByClient(@RequestParam(name = "clientId") UUID id) {
         return invoiceService.filterByClient(id);
     }
