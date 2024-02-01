@@ -51,7 +51,7 @@ public class InvoiceService {
         Invoice update = this.findById(number);
         update.setDate(body.getDate());
         update.setImports(body.getImports());
-        update.setStatoFattura(body.getStatoFattura());
+        update.setStatoFattura(update.getStatoFattura());
 
         return invoiceDao.save(update);
     }
