@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +19,8 @@ public class Invoice {
     private LocalDate date;
     private double imports;
     private String statoFattura;
+
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Clients client;
