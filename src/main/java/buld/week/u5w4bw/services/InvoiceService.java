@@ -65,6 +65,7 @@ public class InvoiceService {
 
     public void invoiceDelete(UUID number) {
         Invoice delete = this.findById(number);
+        System.out.println("eliminato");
         invoiceDao.delete(delete);
     }
 

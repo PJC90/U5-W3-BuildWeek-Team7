@@ -1,6 +1,7 @@
 package buld.week.u5w4bw.services;
 
 import buld.week.u5w4bw.entities.Address;
+import buld.week.u5w4bw.entities.Clients;
 import buld.week.u5w4bw.entities.Comune;
 import buld.week.u5w4bw.entities.Province;
 import buld.week.u5w4bw.exceptions.NotFoundException;
@@ -26,6 +27,9 @@ public class AddressService {
     private ProvinceService provinceService;
 
 
+    @Autowired
+    private ClientService clientService;
+
     public Page<Address> findAll(int size, int page, String order) {
         Pageable pageable = PageRequest.of(size, page, Sort.by(order));
         return addressDAO.findAll(pageable);
@@ -47,6 +51,8 @@ public class AddressService {
         address.setStreet(payload.street());
         address.setHouseNumber(payload.houseNumber());
         address.setPostalCode(payload.zipCode());
+        Clients clientFound = clientService.findById(payload.client_id());
+        clientFound.getAddressList().add(address);
         return addressDAO.save(address);
     }
 

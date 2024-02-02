@@ -37,10 +37,9 @@ public class Clients {
     private String businessLogo;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Address> addressList;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Invoice> invoiceList;
 
